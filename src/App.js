@@ -13,7 +13,6 @@ function App() {
           <Route path="/" component={ SearchBar } />
         </Switch>
       </BrowserRouter>
-
     </div>
   );
 }
