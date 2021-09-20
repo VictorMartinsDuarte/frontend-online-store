@@ -29,10 +29,12 @@ class SearchBar extends React.Component {
         <>
           <ButtonShoppingCart />
           <label htmlFor="search" data-testid="home-initial-message">
-            <input type="text" id="search" />
+            <input type="text" id="search" data-testid="query-input" />
             Digite algum termo de pesquisa ou escolha uma categoria.
           </label>
+          <button type="button" data-testid="query-button">Pesquisar</button>
           <ListCategories arrayCategories={ categories } />
+
         </>
       );
     }
