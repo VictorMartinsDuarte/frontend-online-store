@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
       searchText: '',
       categoryID: '',
       product: [],
+      categoryName: '',
     };
   }
 
@@ -27,7 +28,9 @@ class SearchBar extends React.Component {
     const { name } = target;
     this.setState({
       [name]: target.value,
+      categoryName: target.innerText,
     });
+    this.requestItemOnClick();
   }
 
   requestAPI = async () => {
@@ -37,9 +40,16 @@ class SearchBar extends React.Component {
     });
   }
 
+  async requestItemOnClick() {
+    const { categoryID, categoryName } = this.state;
+    const arrayProduct = await getProductsFromCategoryAndQuery(categoryID, categoryName);
+    this.setState({
+      product: arrayProduct.results,
+    });
+  }
+
   async requestItemFilterAPI() {
     const { searchText, categoryID } = this.state;
-    console.log(searchText);
     const arrayProduct = await getProductsFromCategoryAndQuery(categoryID, searchText);
     this.setState({
       product: arrayProduct.results,
@@ -69,7 +79,10 @@ class SearchBar extends React.Component {
           Pesquisar
         </button>
         <div><ProductCardList arrayProductList={ product } /></div>
-        <ListCategories arrayCategories={ categories } />
+        <ListCategories
+          filterByClick={ this.handleChange }
+          arrayCategories={ categories }
+        />
       </>
     );
   }
