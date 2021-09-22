@@ -31,7 +31,7 @@ class AddToCartButton extends Component {
 AddToCartButton.propTypes = {
   arrayProduct: PropTypes.shape({
     title: PropTypes.string,
-    price: PropTypes.numbe,
+    price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
 
