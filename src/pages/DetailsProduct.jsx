@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonShoppingCart from './ButtonShoppingCart';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductCard from '../components/ProductCards';
+import DetailItem from '../components/DetailItem';
 
 class DetailsProduct extends React.Component {
   constructor() {
@@ -39,9 +39,7 @@ class DetailsProduct extends React.Component {
       <div>
         <ButtonShoppingCart />
         <div>
-          {/* {loading
-            ? <span>carragando...</span> : <ProductCard arrayProduct={ productDetail[0] } />} */}
-          <ProductCard arrayProduct={ productDetail[0] } />
+          <DetailItem arrayProduct={ productDetail[0] } />
         </div>
       </div>
     );
