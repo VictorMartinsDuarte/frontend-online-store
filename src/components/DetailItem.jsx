@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddToCartButtonDetail from './AddToCartButtonDetail';
 
 class DetailItem extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class DetailItem extends React.Component {
           <h4 data-testid="product-detail-name">{arrayProduct.title}</h4>
           <img src={ arrayProduct.thumbnail } alt={ arrayProduct.title } />
           <span>{ `Preço: R$ ${arrayProduct.price}` }</span>
+          <AddToCartButtonDetail arrayProduct={ arrayProduct } />
         </div>
       </div>
     );
