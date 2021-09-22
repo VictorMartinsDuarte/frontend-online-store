@@ -25,7 +25,6 @@ ProductCard.propTypes = {
   arrayProduct: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
-
 };
 
 export default ProductCard;

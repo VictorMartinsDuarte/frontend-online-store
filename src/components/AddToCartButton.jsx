@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class AddToCartButton extends Component {
-
   handleClick = () => {
     const { arrayProduct: { title, price, thumbnail } } = this.props;
     const product = {
@@ -27,5 +26,14 @@ class AddToCartButton extends Component {
     );
   }
 }
+
+AddToCartButton.propTypes = {
+  arrayProduct: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.numbe,
+    thumbnail: PropTypes.string,
+  }).isRequired,
+
+};
 
 export default AddToCartButton;
