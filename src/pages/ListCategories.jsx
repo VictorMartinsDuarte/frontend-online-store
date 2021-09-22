@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class ListCategories extends React.Component {
   render() {
@@ -8,15 +7,19 @@ class ListCategories extends React.Component {
     return (
       <aside>
         {arrayCategories.map(({ id, name }) => (
-          <Link onClick={ filterByClick } to={ name } key={ id }>
+          <button
+            type="button"
+            data-testid="category"
+            onClick={ filterByClick }
+            key={ id }
+          >
             <li
               name={ name }
-              data-testid="category"
-              key={ id }
+              id={ id }
             >
               { name }
             </li>
-          </Link>))}
+          </button>))}
 
       </aside>
     );
