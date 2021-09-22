@@ -7,7 +7,7 @@ class DetailItem extends React.Component {
     return (
       <div>
         <div data-testid="product">
-          <h4>{arrayProduct.title}</h4>
+          <h4 data-testid="product-detail-name">{arrayProduct.title}</h4>
           <img src={ arrayProduct.thumbnail } alt={ arrayProduct.title } />
           <span>{ `Preço: R$ ${arrayProduct.price}` }</span>
         </div>
