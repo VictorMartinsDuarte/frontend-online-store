@@ -1,16 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import AddToCartButton from './AddToCartButton';
 
 class ProductCard extends React.Component {
   render() {
     const { arrayProduct } = this.props;
+    const product = {
+      title: arrayProduct.title,
+      price: arrayProduct.price,
+      thumbnail: arrayProduct.thumbnail,
+    };
     return (
       <div>
         <div data-testid="product">
           <h4>{arrayProduct.title}</h4>
           <img src={ arrayProduct.thumbnail } alt={ arrayProduct.title } />
           <span>{ `Preço: R$ ${arrayProduct.price}` }</span>
+          <AddToCartButton arrayProduct={ product } />
         </div>
         <div>
           <Link
@@ -27,6 +34,6 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   arrayProduct: PropTypes.array,
-}.isRequered;
+}.isRequired;
 
 export default ProductCard;
