@@ -6,13 +6,18 @@ class ProductCard extends React.Component {
   render() {
     const { arrayProduct } = this.props;
     return (
-      <Link data-testid="product-detail-link" to={ `/product-detail/${arrayProduct.id}/${arrayProduct.category_id}` }>
+      <div>
         <div data-testid="product">
           <h4>{arrayProduct.title}</h4>
           <img src={ arrayProduct.thumbnail } alt={ arrayProduct.title } />
           <span>{ `Preço: R$ ${arrayProduct.price}` }</span>
         </div>
-      </Link>
+        <div data-testid="product-detail-link">
+          <Link to={ `/product-detail/${arrayProduct.id}/${arrayProduct.category_id}` }>
+            <button type="button">mais detalhes</button>
+          </Link>
+        </div>
+      </div>
     );
   }
 }

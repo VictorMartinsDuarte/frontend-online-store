@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ButtonShoppingCart from './ButtonShoppingCart';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from '../components/ProductCards';
@@ -11,6 +12,7 @@ class DetailsProduct extends React.Component {
 
     this.state = {
       itens: [],
+      loading: true,
     };
   }
 
@@ -23,24 +25,36 @@ class DetailsProduct extends React.Component {
     const teste = await getProductsFromCategoryAndQuery(categoryId, '');
     this.setState({
       itens: teste.results,
+      loading: false,
     });
   }
 
   render() {
-    const { itens } = this.state;
+    const { itens, loading } = this.state;
     const { match: { params: { id } } } = this.props;
     const productDetail = itens.filter((product) => id === product.id);
+    if (loading) return <span>carregando...</span>;
     console.log(productDetail);
-    const productItem = (
-      <div>{ productDetail[0].title }</div>
-    );
     return (
-      <div data-testid="product-detail-name">
+      <div>
         <ButtonShoppingCart />
-        <div>{productDetail[0] ? productDetail[0].title : <span>carragando</span>}</div>
+        <div>
+          {/* {loading
+            ? <span>carragando...</span> : <ProductCard arrayProduct={ productDetail[0] } />} */}
+          <ProductCard arrayProduct={ productDetail[0] } />
+        </div>
       </div>
     );
   }
 }
+
+DetailsProduct.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      categoryId: PropTypes.string,
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default DetailsProduct;
