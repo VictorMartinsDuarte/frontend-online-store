@@ -16,7 +16,6 @@ class SearchBar extends React.Component {
       searchText: '',
       categoryID: '',
       product: [],
-      categoryName: '',
     };
   }
 
@@ -25,12 +24,10 @@ class SearchBar extends React.Component {
   }
 
   handleChange({ target }) {
-    const { name } = target;
+    const { name, id } = target;
     this.setState({
       [name]: target.value,
-      categoryName: target.innerText,
-    });
-    this.requestItemOnClick();
+    }, () => this.requestItemOnClick(id));
   }
 
   requestAPI = async () => {
@@ -40,9 +37,8 @@ class SearchBar extends React.Component {
     });
   }
 
-  async requestItemOnClick() {
-    const { categoryID, categoryName } = this.state;
-    const arrayProduct = await getProductsFromCategoryAndQuery(categoryID, categoryName);
+  async requestItemOnClick(id) {
+    const arrayProduct = await getProductsFromCategoryAndQuery(id);
     this.setState({
       product: arrayProduct.results,
     });
